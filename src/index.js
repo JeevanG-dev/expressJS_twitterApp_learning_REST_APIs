@@ -1,6 +1,10 @@
 import express from "express";
 
 import morgan from "morgan";
+import { PORT } from "./config/serverConfig.js";
+import api from './routes/api.js'
+
+
 
 //create a new express app/server object
 const app = express();
@@ -26,12 +30,19 @@ function commonMiddleware(req, res, next) {
 
 app.use(commonMiddleware); //lets say we have 100 functions that has same common middleware then we can use this method
 
-app.use(morgan());
+app.use(morgan("combined"));
 
-app.use(express.json())
-app.use(express.urlencoded())
 
-app.get("/users/:userID/order/:orderID", [mid1, mid2], (req, res) => {
+app.use('/api', api)
+
+// app.use('/tweets',router) //http://localhost:3000/tweets
+
+
+
+app.use(express.json());
+app.use(express.urlencoded());
+
+app.get("/ping", [mid1, mid2], (req, res) => {
   console.log(req.body);
 
   console.log(req.params); //this is used to get the url param
@@ -41,22 +52,15 @@ app.get("/users/:userID/order/:orderID", [mid1, mid2], (req, res) => {
   });
 });
 
-app.post("/hello", (req, res) => {
-  console.log(req.query); //this is used to get the data from query param
-  return res.json({
-    message: "world",
+
+
+app.all("*", (req, res) => {
+  return res.status(404).json({
+    message: "not found",
   });
 });
 
-
-app.all("*", (req, res)=>{
-return res.status(404).json({
-  message:"not found"
-})
-})
-
-
 //define a PORT and attach to the express
-app.listen(3000, () => {
-  console.log("server running on port 3000");
+app.listen(PORT, () => {
+  console.log("server running on port", PORT);
 });
