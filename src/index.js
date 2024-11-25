@@ -32,6 +32,9 @@ app.use(commonMiddleware); //lets say we have 100 functions that has same common
 
 app.use(morgan("combined"));
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 
 app.use('/api', api)
 
@@ -39,8 +42,7 @@ app.use('/api', api)
 
 
 
-app.use(express.json());
-app.use(express.urlencoded());
+
 
 app.get("/ping", [mid1, mid2], (req, res) => {
   console.log(req.body);
