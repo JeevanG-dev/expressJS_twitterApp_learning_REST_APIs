@@ -1,0 +1,20 @@
+{
+  "name": "twitter_expresslearning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-middleware": "^3.4.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.7"
+  }
+}
