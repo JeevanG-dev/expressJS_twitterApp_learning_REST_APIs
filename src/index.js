@@ -48,6 +48,14 @@ app.post("/hello", (req, res) => {
   });
 });
 
+
+app.all("*", (req, res)=>{
+return res.status(404).json({
+  message:"not found"
+})
+})
+
+
 //define a PORT and attach to the express
 app.listen(3000, () => {
   console.log("server running on port 3000");
