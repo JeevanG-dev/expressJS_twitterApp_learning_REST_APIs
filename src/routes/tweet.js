@@ -11,6 +11,6 @@ router.get("/", createTweet);
 
 router.get("/:id", getTweetById);
 
-router.post("/", s3Uploader.single('tweetImage'), createPost);
+router.post("/", s3Uploader.single('tweetImage'), createTweet);
 
 export default router;
