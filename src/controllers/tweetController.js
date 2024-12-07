@@ -4,6 +4,7 @@ import {
   getTweets as getTweetService,
   getTweetById as getTweetByIdService,
   deleteTweet as deleteTweetbyIdService,
+  updateTweet as updateTweetService,
 } from "../services/tweetService.js";
 
 export const createTweet = async (req, res) => {
@@ -88,4 +89,26 @@ export const deleteTweetbyId = async (req,res) =>{
     
   }
 
+}
+
+export const updateTweet = async (req,res) => {
+
+  try {
+    
+const response = await updateTweetService(req.params.id, req.body.body)
+
+return res.status(StatusCodes.OK).json({
+success:true,
+data:response,
+message:"updated",
+})
+
+  } catch (error) {
+
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      message:"count not update, no id found",
+      success:false,
+    })
+    
+  }
 }

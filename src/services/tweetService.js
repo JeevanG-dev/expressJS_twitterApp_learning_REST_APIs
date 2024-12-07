@@ -4,6 +4,7 @@ import {
   getTweets as getTweetsRepository,
   getTweetById as tweetByIdRepository,
   deleteTweet as deleteTweetbyIdRepository,
+  updateTweet as updateTweetRepository,
 } from "../repositories/tweetRepository.js";
 
 export const createTweet = async ({ body, image }) => {
@@ -52,3 +53,19 @@ export const deleteTweet = async (id) => {
 
   }
 };
+
+
+export const updateTweet = async (id, body) =>{
+
+  try {
+
+    const tweet = await updateTweetRepository(id,body)
+
+    return tweet;
+    
+  } catch (error) {
+
+    throw error
+    
+  }
+}
