@@ -24,8 +24,27 @@ export const getTweetById = async (tweetId) =>{
 
 try {
     const tweet = await Tweet.findById(tweetId)
+    return tweet
 } catch (error) {
     throw error
     
 }
+}
+
+export const deleteTweet = async (tweetId)=>{
+
+  try {
+
+    const tweet = await Tweet.findByIdAndDelete(tweetId)
+    return tweet
+    
+  } catch (error) {
+    
+    throw error
+
+
+
+  }
+
+
 }

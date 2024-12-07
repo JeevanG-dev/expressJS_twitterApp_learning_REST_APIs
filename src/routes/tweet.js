@@ -1,15 +1,20 @@
 import express from "express";
 import {
-  createPost,
-  getTweetById,createTweet} from "../controllers/tweetController.js";
-import { tweetValidators } from "../validators/tweetValidators.js";
+  createTweet,
+  getTweetById,
+  getTweets,deleteTweetbyId} from "../controllers/tweetController.js";
+
 import { s3Uploader } from "../config/multerConfig.js";
+import { tweetByIdValidator } from "../validators/tweetByIdValidator.js";
+
 
 const router = express.Router();
 
-router.get("/", createTweet);
+router.get("/", getTweets);
 
-router.get("/:id", getTweetById);
+router.get("/:id", tweetByIdValidator, getTweetById )
+
+router.delete('/:id', tweetByIdValidator, deleteTweetbyId)
 
 router.post("/", s3Uploader.single('tweetImage'), createTweet);
 

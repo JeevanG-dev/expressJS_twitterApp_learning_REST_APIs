@@ -34,7 +34,7 @@ app.use(commonMiddleware); //lets say we have 100 functions that has same common
 app.use(morgan("combined"));
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use('/api', api)
@@ -56,12 +56,6 @@ app.get("/ping", [mid1, mid2], (req, res) => {
 });
 
 
-
-app.all("*", (req, res) => {
-  return res.status(404).json({
-    message: "not found",
-  });
-});
 
 //define a PORT and attach to the express
 app.listen(PORT, () => {
