@@ -43,7 +43,7 @@ export const updateTweet = async (tweetId, body) => {
       tweetId,
       { body },
       { new: true }
-    );
+    ) ;
 
     return tweet;
   } catch (error) {
